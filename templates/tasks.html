@@ -1,0 +1,47 @@
+{% extends 'main.html' %}
+
+{% block content %}
+    <div class="container">
+        <div class="row">
+            <div class="col">
+                <button class="btn btn-primary" onclick="location.href=`{{ url_for('add_task') }}`">Добавить дело</button>
+            </div>
+            <div class="col">
+                User: {{ current_user.username }}
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col">
+                {% if tasks|length == 0 %}
+                    Нет никаких дел!
+                {% else%}
+                    <div class="row">
+                        <div class="col">
+                            ИД
+                        </div>
+                        <div class="col">
+                            Заголовок
+                        </div>
+                        <div class="col">
+                            Описание
+                        </div>
+                    </div>
+                    {% for task in tasks %}
+                        <div class="row" onclick="location.href=`{{ url_for('get_task', task_id=task.id) }}`">
+                            <div class="col">
+                                {{ task.id }}
+                            </div>
+                            <div class="col">
+                                {{ task.title }}
+                            </div>
+                            <div class="col">
+                                {{ task.description }}
+                            </div>
+                        </div>
+                    {% endfor %}
+                {% endif %}
+            </div>
+        </div>
+    </div>
+{% endblock %}

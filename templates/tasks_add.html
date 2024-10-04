@@ -1,0 +1,27 @@
+{% extends 'main.html' %}
+
+{% block content %}
+    <div class="container">
+        <div class="row">
+            <div class="col mb-3">
+                User: {{ current_user.username }}
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col">
+                <form action="/tasks/add" method="post">
+                    <div class="mb-3">
+                        <label for="title" class="form-label">Заголовок</label>
+                        <input type="text" name="title" id="title" class="form-control">
+                    </div>
+                    <div class="mb-3">
+                        <label for="description" class="form-label">Описание</label>
+                        <input type="text" name="description" id="description" class="form-control">
+                    </div>
+                    <input type="submit" class="btn btn-primary" value="Добавить">
+                </form>
+            </div>
+        </div>
+    </div>
+{% endblock %}
